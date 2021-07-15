@@ -1,0 +1,29 @@
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 200px;
+    height: 80px;
+    background-color: #FFFFFF;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.header-nav__logo {
+    height: 48px;
+    width: 48px;
+}
+
+.header-nav__text {
+    font-size: 18px;
+    line-height: 28px;
+    color: #1390E5;
+    cursor: pointer;
+}
+

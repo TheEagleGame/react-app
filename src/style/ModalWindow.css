@@ -1,0 +1,24 @@
+
+.ant-modal-content {
+    padding: 40px;
+
+}
+.ant-modal-header {
+    text-align: center;
+    padding: 0;
+}
+.ant-modal-body {
+    width: 100%;
+    padding: 0;
+}
+
+.ant-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.ant-modal-footer.ant-btn {
+    width: 48%;
+}
