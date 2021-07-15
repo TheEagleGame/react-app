@@ -44,20 +44,35 @@
 }
 
 .search-result__item{
-    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24%;
 }
 
 .search-result__img{
-    max-width: 245px;
-    max-height: 138px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
 .search-result__title{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
 }
 
-.search-result__description{
+.search-result__channel{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.search-result__view {
 
 }

@@ -15,9 +15,9 @@ const {Search} = Input
 
 
 export const SearchPage = () => {
-    /*useEffect(() => {
+    useEffect(() => {
         dispatch(loadVideo())
-    }, [])*/
+    }, [])
     const dispatch = useDispatch()
     const queryString = useSelector(state => state.search.queryString)
     const video = useSelector(state => state.search.video)
@@ -28,7 +28,7 @@ export const SearchPage = () => {
             <div className="search-wrapper">
                 <div className='search-line'>
                     <h1 className='search-line__title'>Поиск видео</h1>
-                    <div className='search'>
+                    <div className='search-line__input'>
                         <Search
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
@@ -60,8 +60,8 @@ export const SearchPage = () => {
                         <div className='search-result__item'>
                             <img className='search-result__img' src={item.url}/>
                             <h1 className='search-result__title'>{item.title}</h1>
-                            <h2 className='search-result__description'>{item.channelTitle}</h2>
-                            <div>{item.viewCount}</div>
+                            <h2 className='search-result__channel'>{item.channelTitle}</h2>
+                            <div className='search-result__view'>{`${Math.trunc(item.viewCount/1000).toLocaleString('ru')} тыс. просмотров`}</div>
                         </div>
                     )}
                 </div>
