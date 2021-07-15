@@ -8,7 +8,6 @@ import {fetchUsers} from "../store-redux/auth/api";
 function App() {
     const dispatch = useDispatch()
     useEffect(() => {
-        debugger
         dispatch(fetchUsers())
     },[])
       const isAuth = useSelector(state => state.auth.isAuth)

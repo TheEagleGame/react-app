@@ -15,8 +15,8 @@ import {FavoriteQueries} from "./components/FavoriteQueries";
 ReactDOM.render(
     <Router>
         <Provider store={store}>
-            <Route exact path='/home/search' component={SearchPage}/>
-            <Route exact path='/home/favorite' component={FavoriteQueries}/>
+            <PrivateRoute exact path='/home/search' component={SearchPage}/>
+            <PrivateRoute exact path='/home/favorite-queries' component={FavoriteQueries}/>
             <PrivateRoute exact path='/home' component={PersonalCabinet} />
             <Route exact path='/' component={App}/>
         </Provider>

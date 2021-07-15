@@ -21,7 +21,6 @@ export const authReducer = (state = initialState, action) => {
 
         case SIGN_IN:
             //проверить есть ли такой пользователь
-            debugger
             const index = state.users.findIndex(user => {
                 return user.login === action.payload.login && user.password === action.payload.password
             })
@@ -39,7 +38,6 @@ export const authReducer = (state = initialState, action) => {
                 }
             }
         case SIGN_OUT:
-            debugger
             localStorage.removeItem('token')
             return {
                 ...state,

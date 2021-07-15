@@ -7,7 +7,6 @@ import {signIn} from "../store-redux/auth/actions";
 export const PrivateRoute = ({component: Component, ...props}) => {
     const users = useSelector(state => state.auth.users)
     useEffect(() => {
-        debugger
         if (Object.keys(users).length !== 0) {
             setIsUserFetched(true)
         }
@@ -48,7 +47,6 @@ export const PrivateRoute = ({component: Component, ...props}) => {
             <Component/>
         </Route>
     }
-    debugger
     if (localStorage.token && !isAuth && isUsersFetched) {
         const index = users.findIndex(user => {
             return user.token === localStorage.token
