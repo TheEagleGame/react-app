@@ -21,7 +21,6 @@ export const Header = () => {
             setSectionActive('favorite-queries')
         }
     },[])
-    debugger
     return (
         <div className='header'>
             <nav className='header-nav'>
