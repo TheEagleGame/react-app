@@ -1,35 +1,78 @@
 import React, {useState} from "react";
 import {Header} from "./Header";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import './../style/FavoriteQueries.css'
 import {Button, Collapse} from 'antd';
+import {deleteFavoriteQuery} from "../store-redux/auth/actions";
+import {updateFavoriteQuery} from "../store-redux/favorite-queries/api";
+import {ModalWindow} from "./ModalWindow";
 
 const {Panel} = Collapse;
 
 export const FavoriteQueries = () => {
     const favoriteQueries = useSelector(state => state.auth.loggedUser.favoriteQueries)
-    const [activeQueryId, setActiveQueryId] = useState(null)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [queryActive, setQueryActive] = useState({})
+    const dispatch = useDispatch()
+    debugger
     return (
         <div className='cabinet'>
             <Header/>
             <div className='favorite-queries'>
                 <h1 className='favorite-queries__title'>Избранное</h1>
                 <div className='queries-container'>
-                    {favoriteQueries.map(query =>
-                        <Collapse className='query' ghost>
+                    <Collapse className='query' ghost accordion defaultActiveKey={''}>
+                        {favoriteQueries.map(query =>
                             <Panel header={query.queryName} showArrow={false}>
                                 <div className='query-active'>
                                     <Button className='query-active__button' type="primary">Выполнить</Button>
                                     <div className='query-active__text'>
-                                        <div className='query-active__change'>Изменить</div>
-                                        <div className='query-active__delete'>Удалить</div>
+                                        <div className='query-active__change'
+                                             onClick={() => {
+                                                 setQueryActive({
+                                                     string: query.queryString,
+                                                     name: query.queryName,
+                                                     count: query.queryResultCount,
+                                                     id: query.id
+                                                 })
+                                                 setIsModalVisible(true)
+                                             }}
+                                        >Изменить
+                                        </div>
+                                        <div className='query-active__delete'
+                                             onClick={() => {
+                                                 dispatch(deleteFavoriteQuery(query.id))
+                                                 dispatch(updateFavoriteQuery())
+                                             }}
+                                        >Удалить
+                                        </div>
                                     </div>
                                 </div>
                             </Panel>
-                        </Collapse>
-                    )}
+                        )}
+                    </Collapse>
                 </div>
             </div>
+            {
+                isModalVisible &&
+                <ModalWindow
+                    title='Изменить запрос'
+                    okText='Изменить'
+                    cancelText='Не изменять'
+                    currentValue={{
+                        name: queryActive.name,
+                        count: queryActive.count,
+                        query: queryActive.string,
+                        id: queryActive.id
+                    }}
+                    isQueryChange={true}
+                    isModalVisible={isModalVisible}
+                    handleOkButton={() => setIsModalVisible(false)}
+                    setIsModalVisible={setIsModalVisible}
+                    handleCancelButton={() => setIsModalVisible(false)}
+                    maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
+                />
+            }
         </div>
     )
 }

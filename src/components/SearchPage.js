@@ -80,6 +80,8 @@ export const SearchPage = () => {
             <ModalWindow
                 title='Сохранить запрос'
                 isQueryChange={false}
+                okText='Сохранять'
+                cancelText='Не сохранять'
                 isModalVisible={isModalVisible}
                 handleOkButton = {() => setIsModalVisible(false)}
                 setIsModalVisible={setIsModalVisible}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {setUsers, signIn} from "../auth/actions";
 
-export const fetchQueries = (queryString, queryName, queryResultCount) => {
+export const addFavoriteQuery = (queryString, queryName, queryResultCount) => {
     return async (dispatch, getState) => {
         const loggedUser = getState().auth.loggedUser
         await axios.patch(`http://localhost:3000/users/${loggedUser.id}`,
@@ -16,6 +16,23 @@ export const fetchQueries = (queryString, queryName, queryResultCount) => {
                     queryResultCount,
                     id: loggedUser.favoriteQueries.length
                 }]
+            })
+        const response = await axios.get('http://localhost:3000/users')
+        dispatch(setUsers(response.data))
+        dispatch(signIn(loggedUser.login, loggedUser.password))
+    }
+}
+
+export const updateFavoriteQuery = () => {
+    return async (dispatch, getState) => {
+        const loggedUser = getState().auth.loggedUser
+        await axios.patch(`http://localhost:3000/users/${loggedUser.id}`,
+            {
+                login: loggedUser.login,
+                password: loggedUser.password,
+                id: loggedUser.id,
+                token: localStorage.token,
+                favoriteQueries: [...loggedUser.favoriteQueries]
             })
         const response = await axios.get('http://localhost:3000/users')
         dispatch(setUsers(response.data))

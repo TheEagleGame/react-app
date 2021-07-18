@@ -15,15 +15,9 @@
       "favoriteQueries": [
         {
           "queryString": "video",
-          "queryName": "Video",
-          "queryResultCount": 23,
+          "queryName": "Videos",
+          "queryResultCount": 20,
           "id": 0
-        },
-        {
-          "queryString": "hello",
-          "queryName": "Hello",
-          "queryResultCount": 19,
-          "id": 1
         }
       ]
     }

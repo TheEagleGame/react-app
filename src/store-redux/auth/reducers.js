@@ -1,4 +1,4 @@
-import {SIGN_IN, SIGN_OUT, SET_USERS} from "./actions";
+import {SIGN_IN, SIGN_OUT, SET_USERS, DELETE_FAVORITE_QUERY} from "./actions";
 
 
 const initialState = {
@@ -49,6 +49,17 @@ export const authReducer = (state = initialState, action) => {
                     id: ''
                 },
                 isAuth: false
+            }
+        case DELETE_FAVORITE_QUERY:
+            const favoriteQueries = state.loggedUser.favoriteQueries
+            debugger
+            favoriteQueries.splice(action.payload.queryId,1)
+            return {
+                ...state,
+                loggedUser: {
+                    ...state.loggedUser,
+                    favoriteQueries
+                }
             }
         default:
             return state

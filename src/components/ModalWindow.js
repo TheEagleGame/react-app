@@ -1,76 +1,106 @@
-import React, {useState} from 'react';
-import  {Col, Row, Modal, Button, Input, Select, Slider, InputNumber} from 'antd';
+import React from 'react';
+import {Col, Row, Modal, Button, Input, Select, Slider, InputNumber} from 'antd';
 import './../style/ModalWindow.css'
 import {useDispatch} from "react-redux";
-import {fetchQueries} from "../store-redux/favorite-queries/api";
+import {addFavoriteQuery} from "../store-redux/favorite-queries/api";
+import {Formik} from "formik";
 
 const {Option} = Select
 
 export const ModalWindow = (props) => {
-    const {title, maskStyle, isModalVisible, handleOkButton, handleCancelButton, queryString, isQueryChange} = props
-    const [queryResultCount, setQueryResultCount] = useState(12)
-    const [queryName, setQueryName] = useState('')
+    debugger
+    const {
+        title,
+        maskStyle,
+        isModalVisible,
+        okText,
+        cancelText,
+        handleOkButton,
+        handleCancelButton,
+        queryString,
+        isQueryChange,
+        currentValue
+    } = props
+    console.log(currentValue)
     const dispatch = useDispatch()
-    const handleOk = () => {
-        dispatch(fetchQueries(queryString, queryName, queryResultCount))
-        setQueryName('')
-        setQueryResultCount(12)
+    const initialValue = {
+        name: '',
+        count: '12',
+        query: queryString,
+        id: ''
+    }
+
+    const onSubmit= (values) => {
+        dispatch(addFavoriteQuery(values.query, values.name, values.count))
         handleOkButton()
     }
     return (
-        <Modal title={title}
-               visible={isModalVisible}
-               onOk={handleOk}
-               onCancel={handleCancelButton}
-               maskStyle={maskStyle}
-               closable={null}
-               okText='Сохранить'
-               okButtonProps={{size: "large", block: "true"}}
-               cancelText='Не сохранять'
-               cancelButtonProps={{size: "large", block: "true"}}
-        >
-            <div>
-                <h1>Запрос</h1>
-                <Input value={queryString}
-                       disabled={isQueryChange === 'false' ? 'false' : 'true'}
-                       size="large"
-                />
-            </div>
-            <div>
-                <h1>*Название</h1>
-                <Input placeholder='Укажите название'
-                       value={queryName}
-                       onChange={(e) => setQueryName(e.target.value)}
-                       size="large"
-                />
-            </div>
-            <div>
-                <h1>Сортировать по</h1>
-                <Select defaultValue='Без сортировки' size="large" style={{width: "100%"}} >
-                    <Option>как-то там</Option>
-                </Select>
-            </div>
-            <div>
-                <h1>Количество запросов</h1>
-                <Row>
-                    <Col span={18}>
-                        <Slider defaultValue={queryResultCount}
-                                value={queryResultCount}
-                                max='50'
-                                onChange={(value) => setQueryResultCount(value)}
+        <Formik initialValues={currentValue || initialValue }>
+            { ({values, handleChange, setFieldValue}) => {
+                debugger
+                return <Modal title={title}
+                       visible={isModalVisible}
+                       onOk={ () => {
+                           debugger
+                           onSubmit(values)
+                       }}
+                       onCancel={handleCancelButton}
+                       maskStyle={maskStyle}
+                       closable={null}
+                       okText={okText}
+                       okButtonProps={{size: "large", block: "true"}}
+                       cancelText={cancelText}
+                       cancelButtonProps={{size: "large", block: "true"}}
+                >
+                    <div>
+                        <h1>Запрос</h1>
+                        <Input value={values.query}
+                               onChange={handleChange}
+                               disabled={isQueryChange === false ? true : false}
+                               size="large"
+                               name="query"
                         />
-                    </Col>
-                    <Col span={6}>
-                        <InputNumber
-                            min={0}
-                            max={50}
-                            style={{margin: '0 16px'}}
-                            value={queryResultCount}
-                            onChange={(value) => setQueryResultCount(value)}
+                    </div>
+                    <div>
+                        <h1>*Название</h1>
+                        <Input placeholder='Укажите название'
+                               onChange={handleChange}
+                               value={values.name}
+                               size="large"
+                               name="name"
                         />
-                    </Col>
-                </Row>
-            </div>
-        </Modal>
+                    </div>
+                    <div>
+                        <h1>Сортировать по</h1>
+                        <Select defaultValue='Без сортировки' size="large" style={{width: "100%"}}>
+                            <Option>как-то там</Option>
+                        </Select>
+                    </div>
+                    <div>
+                        <h1>Количество запросов</h1>
+                        <Row>
+                            <Col span={18}>
+                                <Slider
+                                    value={values.count}
+                                    onChange={(count) => setFieldValue("count", count)}
+                                    max='50'
+                                    name="count"
+                                />
+                            </Col>
+                            <Col span={6}>
+                                <InputNumber
+                                    min={0}
+                                    max={50}
+                                    style={{margin: '0 16px'}}
+                                    value={values.count}
+                                    onChange={(count) => setFieldValue("count", count)}
+                                   name="count"
+                                />
+                            </Col>
+                        </Row>
+                    </div>
+                </Modal>
+            }}
+        </Formik>
     )
 }
