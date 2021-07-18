@@ -11,7 +11,6 @@ export const Header = () => {
     const dispatch = useDispatch()
     let location = useLocation()
     const { pathname } = location;
-    console.log(pathname)
     const [sectionActive, setSectionActive] = useState('')
     useEffect(() => {
         if (pathname === '/home' || pathname === '/home/search') {

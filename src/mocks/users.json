@@ -12,7 +12,20 @@
       "password": "user",
       "id": "2",
       "token": "9b3e7786-8b33-4652-92e7-498a0475f8a8",
-      "favoriteQueries": []
+      "favoriteQueries": [
+        {
+          "queryString": "video",
+          "queryName": "Video",
+          "queryResultCount": 23,
+          "id": 0
+        },
+        {
+          "queryString": "hello",
+          "queryName": "Hello",
+          "queryResultCount": 19,
+          "id": 1
+        }
+      ]
     }
   ]
 }

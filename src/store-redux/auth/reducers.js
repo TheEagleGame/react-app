@@ -33,6 +33,8 @@ export const authReducer = (state = initialState, action) => {
                     loggedUser: {
                         login: action.payload.login,
                         password: action.payload.password,
+                        id: state.users[index].id,
+                        favoriteQueries: state.users[index].favoriteQueries
                     },
                     isAuth: true
                 }

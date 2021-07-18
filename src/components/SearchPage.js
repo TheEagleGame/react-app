@@ -79,9 +79,11 @@ export const SearchPage = () => {
             </div>
             <ModalWindow
                 title='Сохранить запрос'
+                isQueryChange={false}
                 isModalVisible={isModalVisible}
-                handleOk={() => setIsModalVisible(false)}
-                handleCancel={() => setIsModalVisible(false)}
+                handleOkButton = {() => setIsModalVisible(false)}
+                setIsModalVisible={setIsModalVisible}
+                handleCancelButton={() => setIsModalVisible(false)}
                 maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
                 queryString={queryString}
             />

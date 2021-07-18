@@ -13,7 +13,7 @@ export const PersonalCabinet = () => {
     const [value, setValue] = useState('')
     const history = useHistory()
     return(
-        <>
+        <div className='cabinet'>
         <Header/>
             <div className='search-container'>
                 <h1 className='search-container__title'>Поиск видео</h1>
@@ -32,6 +32,6 @@ export const PersonalCabinet = () => {
                     />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
