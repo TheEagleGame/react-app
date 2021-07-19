@@ -14,10 +14,16 @@
       "token": "9b3e7786-8b33-4652-92e7-498a0475f8a8",
       "favoriteQueries": [
         {
-          "queryString": "video",
-          "queryName": "Videos",
-          "queryResultCount": 20,
+          "queryName": "VideoQueryAndrew",
+          "queryString": "videoAsk",
+          "queryResultCount": 17,
           "id": 0
+        },
+        {
+          "queryString": "hello",
+          "queryName": "HelloQuery",
+          "queryResultCount": 18,
+          "id": 1
         }
       ]
     }

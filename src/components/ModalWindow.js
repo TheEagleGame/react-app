@@ -1,8 +1,7 @@
 import React from 'react';
-import {Col, Row, Modal, Button, Input, Select, Slider, InputNumber} from 'antd';
+import {Col, Row, Modal, Input, Select, Slider, InputNumber} from 'antd';
 import './../style/ModalWindow.css'
 import {useDispatch} from "react-redux";
-import {addFavoriteQuery} from "../store-redux/favorite-queries/api";
 import {Formik} from "formik";
 
 const {Option} = Select
@@ -29,11 +28,6 @@ export const ModalWindow = (props) => {
         query: queryString,
         id: ''
     }
-
-    const onSubmit= (values) => {
-        dispatch(addFavoriteQuery(values.query, values.name, values.count))
-        handleOkButton()
-    }
     return (
         <Formik initialValues={currentValue || initialValue }>
             { ({values, handleChange, setFieldValue}) => {
@@ -41,8 +35,7 @@ export const ModalWindow = (props) => {
                 return <Modal title={title}
                        visible={isModalVisible}
                        onOk={ () => {
-                           debugger
-                           onSubmit(values)
+                           handleOkButton(dispatch, values)
                        }}
                        onCancel={handleCancelButton}
                        maskStyle={maskStyle}

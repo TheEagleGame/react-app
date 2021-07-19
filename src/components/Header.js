@@ -19,11 +19,11 @@ export const Header = () => {
         if (pathname === '/home/favorite-queries') {
             setSectionActive('favorite-queries')
         }
-    },[])
+    },[pathname])
     return (
         <div className='header'>
             <nav className='header-nav'>
-                <img className='header-nav__logo' src={logo}/>
+                <img className='header-nav__logo' src={logo} alt='logo'/>
                 <NavLink to='/home'>
                     <div className={`header-nav__text ${sectionActive === 'search' ? 'active' : ''}`}>Поиск</div>
                 </NavLink>

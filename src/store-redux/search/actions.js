@@ -1,4 +1,3 @@
-import axios from "axios";
 export const TO_SEARCH = 'TO_SEARCH'
 export const FETCH_VIDEO = 'FETCH_VIDEO'
 

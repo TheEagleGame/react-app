@@ -1,5 +1,5 @@
 import {HeartOutlined} from "@ant-design/icons";
-import React, {useState} from "react";
+import React from "react";
 
 export const Suffix = (isModalVisible) => {
     return (

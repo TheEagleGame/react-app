@@ -2,22 +2,23 @@ import {Header} from "./Header";
 import React, {useEffect, useState} from "react";
 import "../style/SearchPage.css";
 import {search} from "../store-redux/search/actions";
-import {Input, Modal} from "antd";
+import {Input} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {loadVideo} from "../store-redux/search/api";
 import {ReactComponent as Grid} from "./../assets/grid.svg"
 import {ReactComponent as List} from "./../assets/list.svg"
 import {Suffix} from "./Suffix";
 import {ModalWindow} from "./ModalWindow";
+import {addFavoriteQuery} from "../store-redux/favorite-queries/api";
 
 const {Search} = Input
 
 
 export const SearchPage = () => {
+    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(loadVideo())
-    }, [])
-    const dispatch = useDispatch()
+    }, [dispatch])
     const queryString = useSelector(state => state.search.queryString)
     const video = useSelector(state => state.search.video)
     const [searchValue, setSearchValue] = useState(queryString)
@@ -64,7 +65,7 @@ export const SearchPage = () => {
                 <div className={`search-result ${viewResult}`}>
                     {video.map((item) =>
                         <div className={`search-result__item ${viewResult}`}>
-                            <img className={`search-result__img ${viewResult}`} src={item.url}/>
+                            <img className={`search-result__img ${viewResult}`} src={item.url} alt='result_img'/>
                             <div className='hello-hello'>
                                 <h1 className='search-result__title'>{item.title}</h1>
                                 <div className={`search-result__info ${viewResult}`}>
@@ -83,7 +84,10 @@ export const SearchPage = () => {
                 okText='Сохранять'
                 cancelText='Не сохранять'
                 isModalVisible={isModalVisible}
-                handleOkButton = {() => setIsModalVisible(false)}
+                handleOkButton = {(dispatch, values) => {
+                    dispatch(addFavoriteQuery(values.query, values.name, values.count))
+                    setIsModalVisible(false)
+                }}
                 setIsModalVisible={setIsModalVisible}
                 handleCancelButton={() => setIsModalVisible(false)}
                 maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}

@@ -1,4 +1,4 @@
-import {SIGN_IN, SIGN_OUT, SET_USERS, DELETE_FAVORITE_QUERY} from "./actions";
+import {SIGN_IN, SIGN_OUT, SET_USERS, DELETE_FAVORITE_QUERY, CHANGE_FAVORITE_QUERY, CHECK_USER} from "./actions";
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     loggedUser: {
         login: '',
         password: '',
-        id: ''
+        id: '',
+        favoriteQueries: []
     },
     isAuth: false
 }
@@ -17,6 +18,25 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload
+            }
+        case CHECK_USER:
+            debugger
+            const indexOfUser = state.users.findIndex(user => user.token === localStorage.token)
+            if (indexOfUser === -1) {
+                return {
+                    ...state
+                }
+            } else {
+                return {
+                    ...state,
+                    loggedUser: {
+                        login: state.users[indexOfUser].login,
+                        password: state.users[indexOfUser].password,
+                        id: state.users[indexOfUser].id,
+                        favoriteQueries: state.users[indexOfUser].favoriteQueries
+                    },
+                    isAuth: true
+                }
             }
 
         case SIGN_IN:
@@ -52,13 +72,30 @@ export const authReducer = (state = initialState, action) => {
             }
         case DELETE_FAVORITE_QUERY:
             const favoriteQueries = state.loggedUser.favoriteQueries
-            debugger
-            favoriteQueries.splice(action.payload.queryId,1)
+            favoriteQueries.splice(action.payload.queryId, 1)
             return {
                 ...state,
                 loggedUser: {
                     ...state.loggedUser,
                     favoriteQueries
+                }
+            }
+        case CHANGE_FAVORITE_QUERY:
+            debugger
+            return {
+                ...state,
+                loggedUser: {
+                    ...state.loggedUser,
+                    favoriteQueries:
+                        state.loggedUser.favoriteQueries.map(query => query.id !== action.payload.id
+                            ? query
+                            : {
+                                queryName: action.payload.name,
+                                queryString: action.payload.query,
+                                queryResultCount: action.payload.count,
+                                id: action.payload.id
+                            }
+                        )
                 }
             }
         default:

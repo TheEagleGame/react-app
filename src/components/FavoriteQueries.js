@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import {useDispatch, useSelector} from "react-redux";
 import './../style/FavoriteQueries.css'
 import {Button, Collapse} from 'antd';
-import {deleteFavoriteQuery} from "../store-redux/auth/actions";
+import {changeFavoriteQuery, deleteFavoriteQuery} from "../store-redux/auth/actions";
 import {updateFavoriteQuery} from "../store-redux/favorite-queries/api";
 import {ModalWindow} from "./ModalWindow";
 
@@ -67,7 +67,12 @@ export const FavoriteQueries = () => {
                     }}
                     isQueryChange={true}
                     isModalVisible={isModalVisible}
-                    handleOkButton={() => setIsModalVisible(false)}
+                    handleOkButton={ (dispatch,values) => {
+                        dispatch(changeFavoriteQuery(values.query, values.name, values.count, values.id))
+                        debugger
+                        dispatch(updateFavoriteQuery())
+                        setIsModalVisible(false)
+                    }}
                     setIsModalVisible={setIsModalVisible}
                     handleCancelButton={() => setIsModalVisible(false)}
                     maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
