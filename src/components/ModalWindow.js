@@ -27,9 +27,8 @@ export const ModalWindow = (props) => {
     }
     return (
         <Formik initialValues={currentValue || initialValue }>
-            { ({values, handleChange, setFieldValue}) => {
-                debugger
-                return <Modal title={title}
+            { ({values, handleChange, setFieldValue}) => (
+                <Modal title={title}
                        visible={isModalVisible}
                        onOk={ () => {
                            handleOkButton(values)
@@ -63,7 +62,7 @@ export const ModalWindow = (props) => {
                     <div>
                         <h1>Сортировать по</h1>
                         <Select defaultValue='Без сортировки' size="large" style={{width: "100%"}}>
-                            <Option>как-то там</Option>
+                            <Option >разные сортировки</Option>
                         </Select>
                     </div>
                     <div>
@@ -90,7 +89,8 @@ export const ModalWindow = (props) => {
                         </Row>
                     </div>
                 </Modal>
-            }}
+                )
+            }
         </Formik>
     )
 }

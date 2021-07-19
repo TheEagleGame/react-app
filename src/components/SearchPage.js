@@ -11,8 +11,8 @@ import {Suffix} from "./Suffix";
 import {ModalWindow} from "./ModalWindow";
 import {addFavoriteQuery} from "../store-redux/favorite-queries/api";
 
-const {Search} = Input
 
+const {Search} = Input
 
 export const SearchPage = () => {
     const dispatch = useDispatch()
@@ -64,7 +64,7 @@ export const SearchPage = () => {
 
                 <div className={`search-result ${viewResult}`}>
                     {video.map((item) =>
-                        <div className={`search-result__item ${viewResult}`}>
+                        <div className={`search-result__item ${viewResult}`} key={item.id}>
                             <img className={`search-result__img ${viewResult}`} src={item.url} alt='result_img'/>
                             <div className='hello-hello'>
                                 <h1 className='search-result__title'>{item.title}</h1>

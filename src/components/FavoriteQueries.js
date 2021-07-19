@@ -22,7 +22,7 @@ export const FavoriteQueries = () => {
                 <div className='queries-container'>
                     <Collapse className='query' ghost accordion defaultActiveKey={''}>
                         {favoriteQueries.map(query =>
-                            <Panel header={query.queryName} showArrow={false}>
+                            <Panel header={query.queryName} showArrow={false} key={query.id}>
                                 <div className='query-active'>
                                     <Button className='query-active__button' type="primary">Выполнить</Button>
                                     <div className='query-active__text'>
@@ -66,7 +66,7 @@ export const FavoriteQueries = () => {
                     }}
                     isQueryChange={true}
                     isModalVisible={isModalVisible}
-                    handleOkButton={ (dispatch,values) => {
+                    handleOkButton={ (values) => {
                         dispatch(changeFavoriteQuery(values.query, values.name, values.count, values.id))
                         dispatch(updateFavoriteQuery())
                         setIsModalVisible(false)

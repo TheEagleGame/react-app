@@ -15,7 +15,7 @@ export const addFavoriteQuery = (queryString, queryName, queryResultCount) => {
                     queryString,
                     queryName,
                     queryResultCount,
-                    id: loggedUser.favoriteQueries.length
+                    id: loggedUser.favoriteQueries.length // костыль
                 }]
             })
         const response = await axios.get('http://localhost:3000/users')

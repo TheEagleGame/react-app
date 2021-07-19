@@ -80,7 +80,6 @@ export const authReducer = (state = initialState, action) => {
                 }
             }
         case CHANGE_FAVORITE_QUERY:
-            debugger
             return {
                 ...state,
                 loggedUser: {
