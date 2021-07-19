@@ -23,12 +23,14 @@ export const ModalWindow = (props) => {
         name: '',
         count: '12',
         query: queryString,
+        sort: 'relevance',
         id: ''
     }
     return (
         <Formik initialValues={currentValue || initialValue }>
-            { ({values, handleChange, setFieldValue}) => (
-                <Modal title={title}
+            { ({values, handleChange, setFieldValue}) => {
+                console.log(values)
+                return <Modal title={title}
                        visible={isModalVisible}
                        onOk={ () => {
                            handleOkButton(values)
@@ -61,8 +63,12 @@ export const ModalWindow = (props) => {
                     </div>
                     <div>
                         <h1>Сортировать по</h1>
-                        <Select defaultValue='Без сортировки' size="large" style={{width: "100%"}}>
-                            <Option >разные сортировки</Option>
+                        <Select value={values.sort} onChange={(sort) => setFieldValue("sort", sort)} name="sort" size="large" style={{width: "100%"}}>
+                            <Option value='relevance'>релевантности</Option>
+                            <Option value='data'>дате</Option>
+                            <Option value='rating'>рейтингу</Option>
+                            <Option value='title'>алфавиту</Option>
+                            <Option value='viewCount'>количеству просмотров</Option>
                         </Select>
                     </div>
                     <div>
@@ -89,8 +95,7 @@ export const ModalWindow = (props) => {
                         </Row>
                     </div>
                 </Modal>
-                )
-            }
+            }}
         </Formik>
     )
 }

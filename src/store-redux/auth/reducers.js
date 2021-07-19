@@ -91,6 +91,7 @@ export const authReducer = (state = initialState, action) => {
                                 queryName: action.payload.name,
                                 queryString: action.payload.query,
                                 queryResultCount: action.payload.count,
+                                querySort: action.payload.sort,
                                 id: action.payload.id
                             }
                         )

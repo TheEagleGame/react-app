@@ -32,12 +32,13 @@ export const deleteFavoriteQuery = (id) => ({
     payload: id
 })
 
-export const changeFavoriteQuery = (query, name, count, id) => ({
+export const changeFavoriteQuery = (query, name, count, id, sort) => ({
     type:CHANGE_FAVORITE_QUERY,
     payload: {
         query,
         name,
         count,
+        sort,
         id
     }
 })

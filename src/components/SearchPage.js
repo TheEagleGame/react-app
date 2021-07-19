@@ -15,13 +15,17 @@ import {addFavoriteQuery} from "../store-redux/favorite-queries/api";
 const {Search} = Input
 
 export const SearchPage = () => {
+    const query = useSelector(state => state.search.query)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(loadVideo())
+        dispatch(loadVideo({
+            queryString: query.queryString,
+            queryResultCount: query.queryResultCount,
+            querySort: query.querySort
+        }))
     }, [dispatch])
-    const queryString = useSelector(state => state.search.queryString)
     const video = useSelector(state => state.search.video)
-    const [searchValue, setSearchValue] = useState(queryString)
+    const [searchValue, setSearchValue] = useState(query.queryString)
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [viewResult, setViewResult] = useState('grid')
     return (<>
@@ -39,8 +43,20 @@ export const SearchPage = () => {
                             size="large"
                             suffix={<Suffix isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible}/>}
                             onSearch={() => {
-                                dispatch(search(searchValue))
-                                dispatch(loadVideo())
+                                dispatch(search(
+                                    {
+                                        queryString: searchValue,
+                                        queryResultCount: '12',
+                                        querySort: 'relevance'
+                                    }
+                                ))
+                                dispatch(loadVideo(
+                                    {
+                                        queryString: searchValue,
+                                        queryResultCount: '12',
+                                        querySort: 'relevance'
+                                    }
+                                ))
                             }}
                         />
                     </div>
@@ -48,7 +64,7 @@ export const SearchPage = () => {
 
                 <div className="search-query">
                     <div>
-                        Видео по запросу <span className="search-query__text">"{queryString}"</span>
+                        Видео по запросу <span className="search-query__text">"{query.queryString}"</span>
                     </div>
                     <div className="search-icon">
                         <List
@@ -78,22 +94,22 @@ export const SearchPage = () => {
                     )}
                 </div>
             </div>
-            { isModalVisible &&
-                <ModalWindow
-                    title='Сохранить запрос'
-                    isQueryChange={false}
-                    okText='Сохранять'
-                    cancelText='Не сохранять'
-                    isModalVisible={isModalVisible}
-                    handleOkButton={(values) => {
-                        dispatch(addFavoriteQuery(values.query, values.name, values.count))
-                        setIsModalVisible(false)
-                    }}
-                    setIsModalVisible={setIsModalVisible}
-                    handleCancelButton={() => setIsModalVisible(false)}
-                    maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
-                    queryString={queryString}
-                />
+            {isModalVisible &&
+            <ModalWindow
+                title='Сохранить запрос'
+                isQueryChange={false}
+                okText='Сохранять'
+                cancelText='Не сохранять'
+                isModalVisible={isModalVisible}
+                handleOkButton={(values) => {
+                    dispatch(addFavoriteQuery(values.query, values.name, values.count, values.sort))
+                    setIsModalVisible(false)
+                }}
+                setIsModalVisible={setIsModalVisible}
+                handleCancelButton={() => setIsModalVisible(false)}
+                maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
+                queryString={query.queryString}
+            />
             }
         </>
     )

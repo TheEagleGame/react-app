@@ -26,7 +26,11 @@ export const PersonalCabinet = () => {
                         enterButton="Найти"
                         size="large"
                         onSearch={() => {
-                            dispatch(search(value))
+                            dispatch(search({
+                                queryString: value,
+                                queryResultCount: '12',
+                                querySort: 'relevance'
+                            }))
                             setValue('')
                             history.push('home/search')}}
                     />

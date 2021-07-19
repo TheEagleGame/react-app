@@ -1,15 +1,18 @@
 import axios from "axios";
 import {fetchVideo} from "./actions";
 
-export const loadVideo = () => {
-    return async (dispatch, getState) => {
-        const queryString = getState().search.queryString
-        const response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${queryString}&type=video&key=AIzaSyBgb8xgp8ojNVig9IblJ5w0aGQxae6GMA0`)
+export const loadVideo = (props) => {
+    const {
+        queryString,
+        queryResultCount,
+        querySort
+    } = props
+    return async (dispatch) => {
+        const response = await axios.get(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${queryResultCount}&q=${queryString}&type=video&order=${querySort}&key=AIzaSyBgb8xgp8ojNVig9IblJ5w0aGQxae6GMA0`)
         const videoIdArray = response.data.items.map (item => {
             return item.id.videoId}
             )
-        debugger
-        const secondQueryString = videoIdArray.join('&id=')
+        const secondQueryString = videoIdArray.join(',')
         const secondResponse = await axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=statistics&id=${secondQueryString}&key=AIzaSyBgb8xgp8ojNVig9IblJ5w0aGQxae6GMA0`)
         const videoInfo = response.data.items.map( (item,index) => {
             return {

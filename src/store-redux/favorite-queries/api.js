@@ -1,7 +1,7 @@
 import axios from "axios";
 import {setUsers, signIn} from "../auth/actions";
 
-export const addFavoriteQuery = (queryString, queryName, queryResultCount) => {
+export const addFavoriteQuery = (queryString, queryName, queryResultCount, querySort) => {
     debugger
     return async (dispatch, getState) => {
         const loggedUser = getState().auth.loggedUser
@@ -15,6 +15,7 @@ export const addFavoriteQuery = (queryString, queryName, queryResultCount) => {
                     queryString,
                     queryName,
                     queryResultCount,
+                    querySort,
                     id: loggedUser.favoriteQueries.length // костыль
                 }]
             })

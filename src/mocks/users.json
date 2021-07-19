@@ -5,27 +5,29 @@
       "password": "admin",
       "id": "1",
       "token": "5c8255c4-2991-4a36-99b0-7383bcdddb06",
-      "favoriteQueries": []
+      "favoriteQueries": [
+        {
+          "queryString": "короче говоря игл",
+          "queryName": "Короче говоря",
+          "queryResultCount": 20,
+          "querySort": "viewCount",
+          "id": 0
+        },
+        {
+          "queryString": "аллатра",
+          "queryName": "Аллатра",
+          "queryResultCount": 5,
+          "querySort": "viewCount",
+          "id": 1
+        }
+      ]
     },
     {
       "login": "user",
       "password": "user",
       "id": "2",
       "token": "9b3e7786-8b33-4652-92e7-498a0475f8a8",
-      "favoriteQueries": [
-        {
-          "queryName": "VideoQueryAndrew",
-          "queryString": "videoAsk",
-          "queryResultCount": 17,
-          "id": 0
-        },
-        {
-          "queryString": "hello",
-          "queryName": "HelloQuery",
-          "queryResultCount": 18,
-          "id": 1
-        }
-      ]
+      "favoriteQueries": []
     }
   ]
 }
