@@ -78,21 +78,23 @@ export const SearchPage = () => {
                     )}
                 </div>
             </div>
-            <ModalWindow
-                title='Сохранить запрос'
-                isQueryChange={false}
-                okText='Сохранять'
-                cancelText='Не сохранять'
-                isModalVisible={isModalVisible}
-                handleOkButton = {(dispatch, values) => {
-                    dispatch(addFavoriteQuery(values.query, values.name, values.count))
-                    setIsModalVisible(false)
-                }}
-                setIsModalVisible={setIsModalVisible}
-                handleCancelButton={() => setIsModalVisible(false)}
-                maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
-                queryString={queryString}
-            />
+            { isModalVisible &&
+                <ModalWindow
+                    title='Сохранить запрос'
+                    isQueryChange={false}
+                    okText='Сохранять'
+                    cancelText='Не сохранять'
+                    isModalVisible={isModalVisible}
+                    handleOkButton={(values) => {
+                        dispatch(addFavoriteQuery(values.query, values.name, values.count))
+                        setIsModalVisible(false)
+                    }}
+                    setIsModalVisible={setIsModalVisible}
+                    handleCancelButton={() => setIsModalVisible(false)}
+                    maskStyle={{backgroundColor: 'rgba(117, 199, 255, 0.8'}}
+                    queryString={queryString}
+                />
+            }
         </>
     )
 }

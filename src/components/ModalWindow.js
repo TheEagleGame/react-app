@@ -1,13 +1,11 @@
 import React from 'react';
 import {Col, Row, Modal, Input, Select, Slider, InputNumber} from 'antd';
 import './../style/ModalWindow.css'
-import {useDispatch} from "react-redux";
 import {Formik} from "formik";
 
 const {Option} = Select
 
 export const ModalWindow = (props) => {
-    debugger
     const {
         title,
         maskStyle,
@@ -20,8 +18,7 @@ export const ModalWindow = (props) => {
         isQueryChange,
         currentValue
     } = props
-    console.log(currentValue)
-    const dispatch = useDispatch()
+
     const initialValue = {
         name: '',
         count: '12',
@@ -35,7 +32,7 @@ export const ModalWindow = (props) => {
                 return <Modal title={title}
                        visible={isModalVisible}
                        onOk={ () => {
-                           handleOkButton(dispatch, values)
+                           handleOkButton(values)
                        }}
                        onCancel={handleCancelButton}
                        maskStyle={maskStyle}

@@ -14,7 +14,6 @@ export const FavoriteQueries = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [queryActive, setQueryActive] = useState({})
     const dispatch = useDispatch()
-    debugger
     return (
         <div className='cabinet'>
             <Header/>
@@ -69,7 +68,6 @@ export const FavoriteQueries = () => {
                     isModalVisible={isModalVisible}
                     handleOkButton={ (dispatch,values) => {
                         dispatch(changeFavoriteQuery(values.query, values.name, values.count, values.id))
-                        debugger
                         dispatch(updateFavoriteQuery())
                         setIsModalVisible(false)
                     }}

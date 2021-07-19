@@ -8,9 +8,12 @@ import {checkUser} from "../store-redux/auth/actions";
 
 function App() {
     const dispatch = useDispatch()
-    useEffect( async () => {
-        await dispatch(fetchUsers())
-        dispatch(checkUser())
+    useEffect( () => {
+        async function initializeUser() {
+            await dispatch(fetchUsers())
+        }
+        initializeUser()
+            .then(() => dispatch(checkUser()))
     },[dispatch])
       const isAuth = useSelector(state => state.auth.isAuth)
       const history = useHistory()

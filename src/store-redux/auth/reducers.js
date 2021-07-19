@@ -20,7 +20,6 @@ export const authReducer = (state = initialState, action) => {
                 users: action.payload
             }
         case CHECK_USER:
-            debugger
             const indexOfUser = state.users.findIndex(user => user.token === localStorage.token)
             if (indexOfUser === -1) {
                 return {
