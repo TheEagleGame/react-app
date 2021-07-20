@@ -5,7 +5,22 @@
       "password": "admin",
       "id": "1",
       "token": "5c8255c4-2991-4a36-99b0-7383bcdddb06",
-      "favoriteQueries": []
+      "favoriteQueries": [
+        {
+          "queryString": "video",
+          "queryName": "video",
+          "queryResultCount": "12",
+          "querySort": "relevance",
+          "id": 0
+        },
+        {
+          "queryString": "video",
+          "queryName": "assa",
+          "queryResultCount": "12",
+          "querySort": "relevance",
+          "id": 1
+        }
+      ]
     },
     {
       "login": "user",

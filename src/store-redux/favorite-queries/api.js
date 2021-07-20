@@ -2,10 +2,9 @@ import axios from "axios";
 import {setUsers, signIn} from "../auth/actions";
 
 export const addFavoriteQuery = (queryString, queryName, queryResultCount, querySort) => {
-    debugger
     return async (dispatch, getState) => {
         const loggedUser = getState().auth.loggedUser
-        await axios.patch(`http://localhost:3000/users/${loggedUser.id}`,
+        await axios.patch(`http://localhost:4000/users/${loggedUser.id}`,
             {
                 login: loggedUser.login,
                 password: loggedUser.password,
