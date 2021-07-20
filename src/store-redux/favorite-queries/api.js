@@ -19,7 +19,7 @@ export const addFavoriteQuery = (queryString, queryName, queryResultCount, query
                     id: loggedUser.favoriteQueries.length // костыль
                 }]
             })
-        const response = await axios.get('http://localhost:3000/users')
+        const response = await axios.get('http://localhost:4000/users')
         dispatch(setUsers(response.data))
         dispatch(signIn(loggedUser.login, loggedUser.password))
     }
@@ -28,7 +28,7 @@ export const addFavoriteQuery = (queryString, queryName, queryResultCount, query
 export const updateFavoriteQuery = () => {
     return async (dispatch, getState) => {
         const loggedUser = getState().auth.loggedUser
-        await axios.patch(`http://localhost:3000/users/${loggedUser.id}`,
+        await axios.patch(`http://localhost:4000/users/${loggedUser.id}`,
             {
                 login: loggedUser.login,
                 password: loggedUser.password,
@@ -36,7 +36,7 @@ export const updateFavoriteQuery = () => {
                 token: localStorage.token,
                 favoriteQueries: [...loggedUser.favoriteQueries]
             })
-        const response = await axios.get('http://localhost:3000/users')
+        const response = await axios.get('http://localhost:4000/users')
         dispatch(setUsers(response.data))
         dispatch(signIn(loggedUser.login, loggedUser.password))
     }

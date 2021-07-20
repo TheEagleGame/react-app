@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
+    "concurrently": "^6.2.0",
     "formik": "^2.2.9",
     "json-server": "^0.16.3",
     "react": "^17.0.2",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "concurrently \"npm run start\" \"npm run mock\"",
+    "mock": "json-server --watch src/mocks/users.json -p 4000"
   },
   "eslintConfig": {
     "extends": [

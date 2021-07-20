@@ -5,22 +5,7 @@
       "password": "admin",
       "id": "1",
       "token": "5c8255c4-2991-4a36-99b0-7383bcdddb06",
-      "favoriteQueries": [
-        {
-          "queryString": "короче говоря игл",
-          "queryName": "Короче говоря",
-          "queryResultCount": 20,
-          "querySort": "viewCount",
-          "id": 0
-        },
-        {
-          "queryString": "аллатра",
-          "queryName": "Аллатра",
-          "queryResultCount": 5,
-          "querySort": "viewCount",
-          "id": 1
-        }
-      ]
+      "favoriteQueries": []
     },
     {
       "login": "user",
