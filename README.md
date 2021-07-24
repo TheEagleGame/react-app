@@ -12,12 +12,12 @@
 
 ### `http://localhost:3000/`
 
-##Тестовое задание не предусматривает регистрации, а поэтому для авторизации используйте следующие 2 аккаунта:
-####`login: admin `   
-####`password: admin` 
+## Тестовое задание не предусматривает регистрации, а поэтому для авторизации используйте следующие 2 аккаунта:
+#### `login: admin `   
+#### `password: admin` 
 или
-####`login: user`
-####`password: user`
+#### `login: user`
+#### `password: user`
 
 ![alt text](src/screenshots/Screenshot_1.jpg "login page")
 ![alt text](src/screenshots/Screenshot_2.jpg "login page show password")
