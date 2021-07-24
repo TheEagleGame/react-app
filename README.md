@@ -18,3 +18,12 @@
 или
 ####`login: user`
 ####`password: user`
+
+![alt text](src/screenshots/Screenshot_1.jpg "login page")
+![alt text](src/screenshots/Screenshot_2.jpg "login page show password")
+![alt text](src/screenshots/Screenshot_3.jpg "search page from youtube api")
+![alt text](src/screenshots/Screenshot_4.jpg "search page result")
+![alt text](src/screenshots/Screenshot_5.jpg "search page result sort")
+![alt text](src/screenshots/Screenshot_6.jpg "search page result saving")
+![alt text](src/screenshots/Screenshot_7.jpg "favorite queries page")
+![alt text](src/screenshots/Screenshot_8.jpg "favorite queries page changing")

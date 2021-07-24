@@ -7,15 +7,15 @@
       "token": "5c8255c4-2991-4a36-99b0-7383bcdddb06",
       "favoriteQueries": [
         {
-          "queryString": "video",
-          "queryName": "video",
+          "queryString": "видео с ютуба",
+          "queryName": "Видео с Ютуба",
           "queryResultCount": "12",
-          "querySort": "relevance",
-          "id": 0
+          "querySort": "viewCount",
+          "id": 2
         },
         {
-          "queryString": "video",
-          "queryName": "assa",
+          "queryString": "видео",
+          "queryName": "Видео с Ютуба 2",
           "queryResultCount": "12",
           "querySort": "relevance",
           "id": 1
